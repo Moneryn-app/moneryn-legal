@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moneryn — Support</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #0d1422;
+      color: #f0f4fa;
+      font-family: -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
+    main {
+      max-width: 720px;
+      margin: 60px auto;
+      padding: 24px;
+    }
+    h1 { font-size: 36px; margin-bottom: 4px; }
+    h2 { color: #b6d3f5; margin-top: 30px; }
+    p { color: #c0cad9; }
+    .brand { color: #a8e2cd; font-weight: 700; }
+    .card {
+      padding: 24px;
+      background: #19253a;
+      border: 1px solid #34465f;
+      border-radius: 18px;
+      margin: 24px 0;
+    }
+    a { color: #a8e2cd; overflow-wrap: anywhere; }
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      background: #a8e2cd;
+      color: #0d1422;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 12px;
+    }
+    select {
+      background: #19253a;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #526078;
+    }
+    footer {
+      margin-top: 40px;
+      color: #8996aa;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="brand">MONERYN</div>
+
+  <h1 id="title">Підтримка Moneryn</h1>
+
+  <label for="language">Language / Мова: </label>
+  <select id="language" onchange="changeLanguage(this.value)">
+    <option value="uk">Українська</option>
+    <option value="ru">Русский</option>
+    <option value="en">English</option>
+  </select>
+
+  <p id="intro">
+    Потрібна допомога з Moneryn?
+    Зв'яжіться з нами щодо роботи застосунку,
+    підписок або технічних проблем.
+  </p>
+
+  <div class="card">
+    <h2 id="contact">Зв'язатися з підтримкою</h2>
+    <p>sashapaypal22@gmail.com</p>
+    <a class="button"
+       href="mailto:sashapaypal22@gmail.com"
+       id="emailButton">Написати нам</a>
+  </div>
+
+  <div class="card">
+    <h2 id="subscriptions">Підписки Moneryn Pro</h2>
+    <p id="subscriptionInfo">
+      Керувати підпискою, перевіряти її стан
+      або скасовувати автоматичне поновлення
+      можна в налаштуваннях Apple Account.
+    </p>
+    <a href="https://apps.apple.com/account/subscriptions"
+       id="manageSubscriptions">
+      Керувати підписками
+    </a>
+  </div>
+
+  <div class="card">
+    <h2 id="privacy">Конфіденційність</h2>
+    <p id="privacyInfo">
+      Ознайомтеся з нашою політикою конфіденційності.
+    </p>
+    <a href="./" id="privacyLink">
+      Політика конфіденційності
+    </a>
+  </div>
+
+  <footer>
+    © 2026 Moneryn. All rights reserved.
+  </footer>
+</main>
+
+<script>
+const translations = {
+  uk: {
+    title: "Підтримка Moneryn",
+    intro: "Потрібна допомога з Moneryn? Зв'яжіться з нами щодо роботи застосунку, підписок або технічних проблем.",
+    contact: "Зв'язатися з підтримкою",
+    emailButton: "Написати нам",
+    subscriptions: "Підписки Moneryn Pro",
+    subscriptionInfo: "Керувати підпискою, перевіряти її стан або скасовувати автоматичне поновлення можна в налаштуваннях Apple Account.",
+    manageSubscriptions: "Керувати підписками",
+    privacy: "Конфіденційність",
+    privacyInfo: "Ознайомтеся з нашою політикою конфіденційності.",
+    privacyLink: "Політика конфіденційності"
+  },
+  ru: {
+    title: "Поддержка Moneryn",
+    intro: "Нужна помощь с Moneryn? Свяжитесь с нами по вопросам работы приложения, подписок или технических проблем.",
+    contact: "Связаться с поддержкой",
+    emailButton: "Написать нам",
+    subscriptions: "Подписки Moneryn Pro",
+    subscriptionInfo: "Управлять подпиской, проверять её состояние и отменять автоматическое продление можно в настройках Apple Account.",
+    manageSubscriptions: "Управлять подписками",
+    privacy: "Конфиденциальность",
+    privacyInfo: "Ознакомьтесь с нашей политикой конфиденциальности.",
+    privacyLink: "Политика конфиденциальности"
+  },
+  en: {
+    title: "Moneryn Support",
+    intro: "Need help with Moneryn? Contact us for assistance with the app, subscriptions, or technical issues.",
+    contact: "Contact Support",
+    emailButton: "Email Support",
+    subscriptions: "Moneryn Pro Subscriptions",
+    subscriptionInfo: "You can manage your subscription, check its status, or cancel automatic renewal in your Apple Account settings.",
+    manageSubscriptions: "Manage Subscriptions",
+    privacy: "Privacy",
+    privacyInfo: "Read our privacy policy to learn more.",
+    privacyLink: "Privacy Policy"
+  }
+};
+
+function changeLanguage(lang) {
+  const t = translations[lang] || translations.uk;
+  document.documentElement.lang = lang;
+  for (const [id, value] of Object.entries(t)) {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value;
+  }
+}
+
+const browserLanguage = navigator.language.slice(0, 2);
+const selectedLanguage = translations[browserLanguage]
+  ? browserLanguage : "en";
+document.getElementById("language").value = selectedLanguage;
+changeLanguage(selectedLanguage);
+</script>
+</body>
+</html>
